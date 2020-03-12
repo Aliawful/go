@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+  test-sftp:
+    container_name: "test-sftp"
+    image: test-sftp/test-sftp1
+    build:
+      context: .
+      dockerfile: dockerfiles/dockerfile
+    ports:
+      - "8087:22"
+    volumes:
+        - .:/usr/src/app
+    networks:
+        - default
+        - bridge-network
+networks:
+  default:
+    driver: bridge
+  bridge-network:
+    external: true
